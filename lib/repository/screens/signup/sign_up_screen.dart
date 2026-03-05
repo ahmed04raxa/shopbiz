@@ -18,113 +18,111 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bodyBgColor,
-      body: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      resizeToAvoidBottomInset: true,
+      body: Padding(
+        padding: EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Spacer(flex: 2),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 200),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    UiHelper.customText(
-                      text: "Create an Account",
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
                 UiHelper.customText(
-                  text: "Please enter the details below to \ncontinue.",
-                  textAlign: TextAlign.center,
-                  fontSize: 12,
+                  text: "Create an Account",
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
-                ),
-                SizedBox(height: 20),
-                UiHelper.customText(
-                  text: "Name : ",
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0XFF0D0140),
-                ),
-                SizedBox(height: 10),
-                CustomTextField(
-                  controller: nameController,
-                  bgColor: Colors.white,
-                  hintText: "Enter Name",
-                  obscureText: false,
-                  height: 50,
-                  width: 317,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                SizedBox(height: 20),
-                UiHelper.customText(
-                  text: "Email : ",
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0XFF0D0140),
-                ),
-                SizedBox(height: 10),
-                CustomTextField(
-                  controller: emailController,
-                  bgColor: Colors.white,
-                  hintText: "Enter Email",
-                  obscureText: false,
-                  height: 50,
-                  width: 317,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                SizedBox(height: 20),
-                UiHelper.customText(
-                  text: "Password : ",
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0XFF0D0140),
-                ),
-                SizedBox(height: 10),
-                CustomTextField(
-                  controller: passwordController,
-                  bgColor: Colors.white,
-                  hintText: "Enter Password",
-                  obscureText: true,
-                  height: 50,
-                  width: 317,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-
-                SizedBox(height: 20),
-                CustomBtn(
-                  callback: () {},
-                  height: 50,
-                  width: 317,
-                  bgColor: AppColors.buttonBgColor,
-                  text: 'Sign Up',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
                 ),
               ],
             ),
-          ),
+            SizedBox(height: 10),
+            UiHelper.customText(
+              text: "Please enter the details below to \ncontinue.",
+              textAlign: TextAlign.start,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+            SizedBox(height: 20),
+            UiHelper.customText(
+              text: "Name : ",
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color(0XFF0D0140),
+            ),
+            SizedBox(height: 10),
+            CustomTextField(
+              controller: nameController,
+              bgColor: Colors.white,
+              hintText: "Enter Name",
+              obscureText: false,
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            SizedBox(height: 20),
+            UiHelper.customText(
+              text: "Email : ",
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color(0XFF0D0140),
+            ),
+            SizedBox(height: 10),
+            CustomTextField(
+              controller: emailController,
+              bgColor: Colors.white,
+              hintText: "Enter Email",
+              obscureText: false,
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            SizedBox(height: 20),
+            UiHelper.customText(
+              text: "Password : ",
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Color(0XFF0D0140),
+            ),
+            SizedBox(height: 10),
+            CustomTextField(
+              controller: passwordController,
+              bgColor: Colors.white,
+              hintText: "Enter Password",
+              obscureText: true,
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              borderRadius: BorderRadius.circular(10),
+            ),
+
+            SizedBox(height: 20),
+            CustomBtn(
+              callback: () {},
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              bgColor: AppColors.buttonBgColor,
+              text: 'Sign Up',
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+            Spacer(flex: 3),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                UiHelper.customText(text: "Already have an account?"),
+                UiHelper.customTextButton(
+                  text: "Login",
+                  color: AppColors.buttonBgColor,
+                  fontWeight: FontWeight.bold,
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, "/loginScreen");
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+          ],
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          UiHelper.customText(text: "Already have an account?"),
-          UiHelper.customTextButton(
-            text: "Login",
-            color: AppColors.buttonBgColor,
-            fontWeight: FontWeight.bold,
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, "/loginScreen");
-            },
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
