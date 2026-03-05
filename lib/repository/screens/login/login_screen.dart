@@ -72,14 +72,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: MediaQuery.of(context).size.width,
                 borderRadius: BorderRadius.circular(10),
               ),
-              UiHelper.customTextButton(
-                text: "Forgot Password ?",
-                color: AppColors.buttonBgColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 10,
-                onPressed: () {
-                  Navigator.pushNamed(context, "/forgotPasswordScreen");
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  UiHelper.customTextButton(
+                    text: "Forgot Password ?",
+                    color: AppColors.buttonBgColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/forgotPasswordScreen");
+                    },
+                  ),
+                ],
               ),
               SizedBox(height: 20),
               CustomBtn(
