@@ -26,10 +26,30 @@ class UiHelper {
     FontWeight? fontWeight,
     double? fontSize,
   }) {
-    return TextButton(onPressed: onPressed, child: Text(text,style: TextStyle(
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      color: color
-    ),));
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: color,
+        ),
+      ),
+    );
+  }
+
+  static customImage({
+    required String imgUrl,
+    double? width,
+    double? height,
+    BoxFit? boxFit,
+  }) {
+    return Image.asset(
+      "assets/images/$imgUrl",
+      width: width,
+      height: height,
+      fit: boxFit,
+    );
   }
 }

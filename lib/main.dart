@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0XFF0000FF)),
         fontFamily: "regular",
-        useMaterial3: true
+        useMaterial3: true,
       ),
-      initialRoute: AppRoutes.loginScreen,
+      initialRoute: AppRoutes.bottomNavigationScreen,
       routes: AppRoutes.getRoutes(),
     );
   }
