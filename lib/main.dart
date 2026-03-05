@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopbiz/repository/screens/admindashboard/adminhome/admin_home_screen.dart';
+import 'package:shopbiz/domain/constants/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,10 @@ class MyApp extends StatelessWidget {
       title: 'ShopBiz',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0XFF0000FF)),
+        fontFamily: "regular",
       ),
-      home: AdminHomeScreen(),
+      initialRoute: AppRoutes.signUpScreen,
+      routes: AppRoutes.getRoutes(),
     );
   }
 }
