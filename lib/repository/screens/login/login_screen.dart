@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: "Welcome Back !",
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
+                fontFamily: "bold",
               ),
               SizedBox(height: 10),
               UiHelper.customText(
@@ -89,7 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 20),
               CustomBtn(
                 callback: () {
-                  Navigator.pushNamed(context, "/bottomNavigationScreen");
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    "/bottomNavigationScreen",
+                        (route) => false,
+                  );
                 },
                 height: 50,
                 width: MediaQuery.of(context).size.width,

@@ -5,6 +5,7 @@ class UiHelper {
     required String text,
     double? fontSize,
     FontWeight? fontWeight,
+    String? fontFamily,
     TextAlign? textAlign,
     Color color = Colors.black,
   }) {
@@ -14,6 +15,7 @@ class UiHelper {
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,
+        fontFamily: fontFamily ?? "regular",
         color: color,
       ),
     );
