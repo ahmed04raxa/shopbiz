@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shopbiz/domain/constants/app_colors.dart';
+import 'package:shopbiz/repository/screens/home/product_details.dart';
 import 'package:shopbiz/repository/widgets/ui_helper.dart';
 import '../../widgets/custom_text_field.dart';
 
@@ -126,52 +127,62 @@ class _HomeScreenState extends State<HomeScreen> {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 20),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 10),
-                        UiHelper.customImage(
-                          imgUrl: "headphone_icon.png",
-                          height: 150,
-                          width: 150,
-                          boxFit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetails(),
                         ),
-                        UiHelper.customText(
-                          text: "Headphones",
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            UiHelper.customText(
-                              text: "\$10",
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.buttonBgColor,
-                            ),
-                            SizedBox(width: 30),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          UiHelper.customImage(
+                            imgUrl: "headphone_icon.png",
+                            height: 150,
+                            width: 150,
+                            boxFit: BoxFit.cover,
+                          ),
+                          UiHelper.customText(
+                            text: "Headphones",
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              UiHelper.customText(
+                                text: "\$10",
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
                                 color: AppColors.buttonBgColor,
-                                borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Icon(
-                                Icons.add,
-                                size: 20,
-                                color: Colors.white,
+                              SizedBox(width: 30),
+                              Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: AppColors.buttonBgColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 20,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Container(

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "72388048866",
+    "project_id": "shopbiz-5ed6e",
+    "storage_bucket": "shopbiz-5ed6e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72388048866:android:d2964b11d2e0c81bfcebbb",
+        "android_client_info": {
+          "package_name": "com.example.shopbiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm7Izk04Gvw9fcz_Put-1Pg9r3WwwllL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

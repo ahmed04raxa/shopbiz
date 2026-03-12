@@ -1,7 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shopbiz/domain/constants/app_routes.dart';
+import 'package:shopbiz/firebase_options.dart';
 
-void main() {
+void main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print('Connected');
+  } catch (ex) {
+    print('Error While Connecting');
+  }
   runApp(const MyApp());
 }
 
@@ -17,7 +28,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "regular",
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.bottomNavigationScreen,
+      initialRoute: AppRoutes.adminLoginScreen,
       routes: AppRoutes.getRoutes(),
     );
   }
