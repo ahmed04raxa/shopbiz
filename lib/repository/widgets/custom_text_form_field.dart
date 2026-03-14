@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  double height;
+  double? height;
   double width;
   Color? bgColor;
   BorderRadius? borderRadius;
   TextEditingController controller;
   String hintText;
   bool obscureText;
+  int? maxLines;
 
   String? Function(String?)? validator;
 
   CustomTextFormField({
     super.key,
-    this.height = 60,
+    this.height,
     this.width = 275,
     this.bgColor,
     this.borderRadius,
@@ -21,6 +22,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.validator,
+    this.maxLines = 2,
   });
 
   @override
@@ -35,6 +37,7 @@ class CustomTextFormField extends StatelessWidget {
           cursorColor: Colors.black,
           obscureText: obscureText,
           validator: validator,
+          maxLines: maxLines,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,

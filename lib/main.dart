@@ -2,17 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shopbiz/domain/constants/app_routes.dart';
 import 'package:shopbiz/firebase_options.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    print('Connected');
-  } catch (ex) {
-    print('Error While Connecting');
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Supabase.initialize(
+    url: "https://kddicicwulkoqcmnobnj.supabase.co",
+    anonKey: "sb_publishable_7nLZwNYL9c_ilUoCA23bYw_kp-QfZoQ",
+  );
   runApp(const MyApp());
 }
 
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "regular",
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.adminLoginScreen,
+      initialRoute: AppRoutes.bottomNavigationScreen,
       routes: AppRoutes.getRoutes(),
     );
   }
