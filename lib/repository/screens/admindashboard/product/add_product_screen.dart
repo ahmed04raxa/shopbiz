@@ -48,28 +48,32 @@ class _AddProductScreenState extends State<AddProductScreen> {
       final imageUrl = Supabase.instance.client.storage
           .from('productImage')
           .getPublicUrl(filePath);
+      String firstLetter = productNameController.text
+          .substring(0, 1)
+          .toUpperCase();
       Map<String, dynamic> productInfoMap = {
         "Name": productNameController.text,
         "Price": productPriceController.text,
         "Details": productDetailsController.text,
         "imgUrl": imageUrl,
+        "SearchKey": firstLetter,
+        "UpdatedName": productNameController.text.toUpperCase(),
       };
-      await FirestoreService()
-          .addProduct(productInfoMap, value!)
-          .then(
-            (value) => {
-              selectedImage = null,
-              productNameController.text = "",
-              productPriceController.text = "",
-              productDetailsController.text = "",
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.green,
-                  content: Text("Product Uploaded Successfully"),
-                ),
-              ),
-            },
-          );
+      await FirestoreService().addProduct(productInfoMap, value!).then((
+        value,
+      ) async {
+        await FirestoreService().addAllProducts(productInfoMap);
+        // selectedImage = null,
+        // productNameController.text = "",
+        // productPriceController.text = "",
+        // productDetailsController.text = "",
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.green,
+            content: Text("Product Uploaded Successfully"),
+          ),
+        );
+      });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

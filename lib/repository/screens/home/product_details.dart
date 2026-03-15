@@ -3,8 +3,8 @@ import 'package:shopbiz/domain/constants/app_colors.dart';
 import 'package:shopbiz/repository/widgets/ui_helper.dart';
 
 class ProductDetails extends StatefulWidget {
-  String img, name, details, price;
-  ProductDetails({
+  final String img, name, details, price;
+  const ProductDetails({
     super.key,
     required this.img,
     required this.name,
@@ -28,22 +28,17 @@ class _ProductDetailsState extends State<ProductDetails> {
             Stack(
               children: [
                 Center(child: Image.network(widget.img, height: 400)),
-
                 Positioned(
-                  top: 0,
-                  left: 0,
-                  child: GestureDetector(
-                    onTap: () {
+                  top: 10,
+                  left: 20,
+                  child: IconButton(
+                    onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20),
+                    icon: Icon(Icons.arrow_back_ios_new_outlined),
+                    style: IconButton.styleFrom(
+                      backgroundColor: Colors.white,
                       padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(Icons.arrow_back_ios_new_outlined),
                     ),
                   ),
                 ),
