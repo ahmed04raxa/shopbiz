@@ -3,12 +3,13 @@ import 'package:shopbiz/domain/constants/app_colors.dart';
 import 'package:shopbiz/repository/widgets/ui_helper.dart';
 
 class ProductDetails extends StatefulWidget {
-  //String img, name, price;
+  String img, name, details, price;
   ProductDetails({
     super.key,
-    // required this.img,
-    // required this.name,
-    // required this.price,
+    required this.img,
+    required this.name,
+    required this.details,
+    required this.price,
   });
 
   @override
@@ -26,24 +27,24 @@ class _ProductDetailsState extends State<ProductDetails> {
           children: [
             Stack(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(left: 20),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(30),
+                Center(child: Image.network(widget.img, height: 400)),
+
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20),
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Icon(Icons.arrow_back_ios_new_outlined),
                     ),
-                    child: Icon(Icons.arrow_back_ios_new_outlined),
-                  ),
-                ),
-                Center(
-                  child: UiHelper.customImage(
-                    imgUrl: "headphone2.png",
-                    height: 400,
                   ),
                 ),
               ],
@@ -66,12 +67,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         UiHelper.customText(
-                          text: "Headphone",
+                          text: widget.name,
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                         ),
                         UiHelper.customText(
-                          text: "\$ 20",
+                          text: "\$${widget.price}",
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                           color: AppColors.buttonBgColor,
@@ -86,18 +87,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     SizedBox(height: 10),
                     UiHelper.customText(
-                      text:
-                          "This Is The Detail of product This Is The Detail of product This Is The Detail of product This Is The Detail of product This Is The Detail of product ",
+                      text: widget.details,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
-                    SizedBox(height: 90,),
+                    SizedBox(height: 90),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: AppColors.buttonBgColor,
-                        borderRadius: BorderRadius.circular(10)
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
                         child: UiHelper.customText(

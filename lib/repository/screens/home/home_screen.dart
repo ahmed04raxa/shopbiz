@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shopbiz/domain/constants/app_colors.dart';
 import 'package:shopbiz/repository/screens/home/category_product_screen.dart';
-import 'package:shopbiz/repository/screens/home/product_details.dart';
 import 'package:shopbiz/repository/widgets/ui_helper.dart';
 import '../../widgets/custom_text_field.dart';
 
@@ -15,13 +15,29 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
+  bool search = false;
   List categories = [
     "assets/images/headphone_icon.png",
     "assets/images/laptop.png",
     "assets/images/watch.png",
     "assets/images/TV.png",
   ];
-  List categoryName = ['Watch', 'Laptop', 'Tv', 'Headphones'];
+  List categoryName = ['Headphones', 'Laptop', 'Watch', 'Tv'];
+  var queryResult = [];
+  var tempSearchStore = [];
+  void initiateSearch(value) {
+    if (value.length == 0) {
+      setState(() {
+        queryResult = [];
+        tempSearchStore = [];
+      });
+    }
+    setState(() {
+      search = true;
+    });
+    var capitalizedValue = value.subString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,31 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: CustomTextField(
-                      controller: searchController,
-                      bgColor: Colors.white,
-                      hintText: "Enter Search",
-                      obscureText: true,
-                      height: 50,
-                      width: 312,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.buttonBgColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Icon(Icons.search, color: Colors.black, size: 35),
-                  ),
-                ],
+              SizedBox(height: 10),
+              CustomTextField(
+                controller: searchController,
+                bgColor: Colors.white,
+                hintText: "Search Product..",
+                obscureText: false,
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                borderRadius: BorderRadius.circular(10),
               ),
               SizedBox(height: 20),
               CarouselSlider(
@@ -130,22 +130,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               SizedBox(height: 20),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                height: 130,
-                child: ListView.builder(
-                  itemCount: categories.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return CategoryTile(
-                      image: categories[index],
-                      name: categoryName[index],
-                    );
-                  },
-                ),
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.all(20),
+                    height: 130,
+                    decoration: BoxDecoration(
+                      color: AppColors.buttonBgColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: UiHelper.customText(
+                        text: "All",
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "bold",
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.zero,
+                      height: 130,
+                      child: ListView.builder(
+                        itemCount: categories.length,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return CategoryTile(
+                            image: categories[index],
+                            name: categoryName[index],
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
-
               SizedBox(height: 20),
               SizedBox(
                 height: 240,
@@ -154,14 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductDetails(),
-                          ),
-                        );
-                      },
+                      onTap: () {},
                       child: Container(
                         margin: EdgeInsets.only(right: 20),
                         padding: EdgeInsets.symmetric(horizontal: 20),

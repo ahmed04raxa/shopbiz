@@ -17,7 +17,7 @@ class AddProductScreen extends StatefulWidget {
 }
 
 class _AddProductScreenState extends State<AddProductScreen> {
-  final List<String> categoryItem = ['Watch', 'Laptop', 'Tv', 'Headphones'];
+  final List<String> categoryItem = ['Headphones', 'Laptop', 'Watch', 'Tv'];
   String? value;
   final _formKey = GlobalKey<FormState>();
 
@@ -28,7 +28,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController productDetailsController =
       TextEditingController();
   Future pickImage() async {
-    final image = await _imagePicker.pickImage(source: ImageSource.camera);
+    final image = await _imagePicker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       selectedImage = File(image.path);
       setState(() {});
@@ -40,26 +40,43 @@ class _AddProductScreenState extends State<AddProductScreen> {
         productNameController.text != "" &&
         productPriceController.text != "" &&
         productDetailsController.text != "") {
-
       final fileName = "${DateTime.now().millisecondsSinceEpoch}.jpg";
       final filePath = "productImages/$fileName";
-
       await Supabase.instance.client.storage
           .from('productImage')
           .upload(filePath, selectedImage!);
-
       final imageUrl = Supabase.instance.client.storage
           .from('productImage')
           .getPublicUrl(filePath);
-
       Map<String, dynamic> productInfoMap = {
         "Name": productNameController.text,
         "Price": productPriceController.text,
         "Details": productDetailsController.text,
         "imgUrl": imageUrl,
       };
-
-      await FirestoreService().addProduct(productInfoMap, value!);
+      await FirestoreService()
+          .addProduct(productInfoMap, value!)
+          .then(
+            (value) => {
+              selectedImage = null,
+              productNameController.text = "",
+              productPriceController.text = "",
+              productDetailsController.text = "",
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text("Product Uploaded Successfully"),
+                ),
+              ),
+            },
+          );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text("All Fields Are Required"),
+        ),
+      );
     }
   }
 
@@ -162,7 +179,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       bgColor: Colors.white,
                       width: MediaQuery.of(context).size.width,
                       borderRadius: BorderRadius.circular(10),
-                      maxLines: 6,
                     ),
                     SizedBox(height: 20),
                     Container(

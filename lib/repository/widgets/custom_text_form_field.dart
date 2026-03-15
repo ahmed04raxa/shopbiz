@@ -8,7 +8,6 @@ class CustomTextFormField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
   bool obscureText;
-  int? maxLines;
 
   String? Function(String?)? validator;
 
@@ -22,7 +21,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.validator,
-    this.maxLines = 2,
+
   });
 
   @override
@@ -37,7 +36,6 @@ class CustomTextFormField extends StatelessWidget {
           cursorColor: Colors.black,
           obscureText: obscureText,
           validator: validator,
-          maxLines: maxLines,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,
