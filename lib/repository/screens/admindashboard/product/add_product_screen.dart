@@ -63,10 +63,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
         value,
       ) async {
         await FirestoreService().addAllProducts(productInfoMap);
-        // selectedImage = null,
-        // productNameController.text = "",
-        // productPriceController.text = "",
-        // productDetailsController.text = "",
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.green,

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "regular",
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.bottomNavigationScreen,
+      initialRoute: AppRoutes.loginScreen,
       routes: AppRoutes.getRoutes(),
     );
   }

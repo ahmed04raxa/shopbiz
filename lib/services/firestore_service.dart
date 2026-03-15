@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future addProduct(
     Map<String, dynamic> productInfoMap,
     String categoryName,
@@ -29,4 +30,21 @@ class FirestoreService {
         )
         .get();
   }
+  Future<QuerySnapshot> getUserByEmail(String email) async {
+    return await FirebaseFirestore.instance
+        .collection('Users')
+        .where("email", isEqualTo: email)
+        .get();
+  }
+  Future<void> deleteUserData(String email) async {
+    QuerySnapshot snapshot = await _firestore
+        .collection('Users')
+        .where('email', isEqualTo: email)
+        .get();
+
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
 }
+
