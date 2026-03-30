@@ -30,12 +30,14 @@ class FirestoreService {
         )
         .get();
   }
+
   Future<QuerySnapshot> getUserByEmail(String email) async {
     return await FirebaseFirestore.instance
         .collection('Users')
         .where("email", isEqualTo: email)
         .get();
   }
+
   Future<void> deleteUserData(String email) async {
     QuerySnapshot snapshot = await _firestore
         .collection('Users')
@@ -47,4 +49,3 @@ class FirestoreService {
     }
   }
 }
-

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../domain/constants/app_colors.dart';
 import '../../../widgets/custom_btn.dart';
 import '../../../widgets/custom_text_form_field.dart';
@@ -46,7 +45,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 180),
-
               UiHelper.customText(
                 text: "Admin Panel",
                 fontSize: 30,

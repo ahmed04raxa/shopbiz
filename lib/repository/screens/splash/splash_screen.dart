@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:shopbiz/repository/widgets/ui_helper.dart';
 
@@ -26,8 +25,6 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //Image.asset("assets/images/logo.png"),
-            //Text('SPLASH SCREEN')
             UiHelper.customImage(imgUrl: "logo.png"),
           ],
         ),
