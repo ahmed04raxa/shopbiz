@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "regular",
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.addProductScreen,
+      initialRoute: AppRoutes.signUpScreen,
       routes: AppRoutes.getRoutes(),
     );
   }

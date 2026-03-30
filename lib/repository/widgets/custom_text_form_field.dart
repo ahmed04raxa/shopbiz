@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   Color? bgColor;
   BorderRadius? borderRadius;
   TextEditingController controller;
+  TextInputType textInputType;
   String hintText;
   bool obscureText;
 
@@ -21,7 +22,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.validator,
-
+    this.textInputType = TextInputType.text,
   });
 
   @override
@@ -41,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
             hintText: hintText,
             contentPadding: EdgeInsets.symmetric(horizontal: 10),
           ),
+          keyboardType: textInputType,
         ),
       ),
     );

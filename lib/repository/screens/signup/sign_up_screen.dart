@@ -149,6 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(height: 10),
                     CustomTextFormField(
                       controller: emailController,
+                      textInputType: TextInputType.emailAddress,
                       hintText: "Enter Email",
                       obscureText: false,
                       bgColor: Colors.white,
